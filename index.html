@@ -176,12 +176,12 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Available May 2026</div>
+  <div class="hero-eyebrow">Graduating May 2026</div>
   <h1 class="hero-name" id="heroName" data-text="Manas Munjial">Manas<br><em>Munjial</em></h1>
   <div class="hero-role-wrap">
     <p class="hero-role"><span id="roleType"></span><span class="hero-role-cursor"></span></p>
   </div>
-  <p class="hero-desc">Building production AI systems that ship to real users. CS + Math @ Penn State, focusing on ML engineering, RAG pipelines, and full-stack deployment.</p>
+  <p class="hero-desc">CS student at Penn State who builds things end-to-end. Shipped RAG systems to production, led a team, won a capstone. Looking for SWE or ML roles starting May 2026.</p>
   <div class="hero-links">
     <a href="#projects" class="btn-primary">View My Work</a>
     <!-- ⚠️ Replace href with your hosted resume PDF URL -->
@@ -197,15 +197,15 @@
   <div class="section-label">01 — About</div>
   <div class="about-grid">
     <div class="about-left">
-      <h2>CS student<br>building <em>real</em><br>systems</h2>
-      <p>Senior at Penn State graduating May 2026, 3.88 GPA, 8x Dean's List. I care about AI that actually gets deployed — not notebooks that never leave localhost.</p>
-      <p>My work spans RAG pipelines serving 200+ employees, award-winning full-stack apps, and low-level systems from memory allocators to transformers built from scratch.</p>
+      <h2>CS student,<br>Penn State<br><em>May 2026</em></h2>
+      <p>Senior at Penn State, graduating May 2026 with a 3.88 GPA and 8 consecutive semesters on the Dean's List. Major in Computer Science.</p>
+      <p>I've built RAG systems used by 200+ Penn State employees, shipped a capstone app now adopted by engineering firms, and written everything from PyTorch transformers to C memory allocators from scratch.</p>
     </div>
     <div class="about-right">
       <div class="stat-row">
         <div class="stat"><div class="stat-num">3.88<span>/4</span></div><div class="stat-label">GPA</div></div>
         <div class="stat"><div class="stat-num">8<span>x</span></div><div class="stat-label">Dean's List</div></div>
-        <div class="stat"><div class="stat-num">70<span>%</span></div><div class="stat-label">Latency Cut</div></div>
+        <div class="stat"><div class="stat-num">200<span>+</span></div><div class="stat-label">Users Served</div></div>
         <div class="stat"><div class="stat-num">1<span>st</span></div><div class="stat-label">Capstone</div></div>
       </div>
       <div class="tag-cloud">
@@ -364,6 +364,20 @@
       </div>
     </div>
 
+    <div class="proj-card wide" id="pc7">
+      <div>
+        <div class="proj-badge b-prod">Computer Vision · Healthcare</div>
+        <div class="proj-title">Multi-Spatial Tool Tracking System for Surgical Safety</div>
+        <p class="proj-desc">Real-time surgical instrument tracking system built to reduce retained-tool incidents in operating rooms. Uses OpenCV and PyTorch classifiers to monitor tool state across three categories — in field, in use, and discarded — with a live activity log for post-operation analysis. React frontend displays current tool status; Flask backend handles detection and state management.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-stack">OpenCV · PyTorch · Flask · React · Tailwind CSS</span>
+        <div class="proj-links">
+          <a href="https://github.com/Manchi0" class="proj-link" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -375,7 +389,7 @@
   <div class="contact-inner">
     <div class="contact-left">
       <h2>Let's<br>work <em>together</em></h2>
-      <p>Open to full-time SWE and ML engineering roles starting May 2026. F-1 / H-1B sponsorship required.</p>
+      <p>Looking for full-time SWE or ML engineering roles from May 2026. I require H-1B sponsorship.</p>
       <div class="contact-links">
         <a href="mailto:manasmunjial@icloud.com" class="contact-link">
           <div class="contact-link-icon">@</div>manasmunjial@icloud.com
@@ -413,7 +427,7 @@
 <div class="divider"></div>
 <footer>
   <div class="footer-name">Manas Munjial</div>
-  <div class="footer-right">Penn State CS · May 2026 · Open to Sponsorship</div>
+  <div class="footer-right">Penn State CS · Graduating May 2026 · H-1B Sponsorship Required</div>
 </footer>
 
 <script>
@@ -540,7 +554,7 @@
   });
 
   // ── Typewriter role cycler
-  const roles = ['ML Engineer', 'Full-Stack Developer', 'RAG Systems Builder', 'CS + Math @ Penn State', 'Available May 2026'];
+  const roles = ['ML Engineer', 'Software Engineer', 'Full-Stack Developer', 'CS @ Penn State', 'Graduating May 2026'];
   let rIdx = 0;
   const typeEl = document.getElementById('roleType');
 
