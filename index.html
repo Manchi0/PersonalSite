@@ -123,6 +123,39 @@
     .proj-link{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;border:.5px solid var(--border2);padding:.2rem .6rem;border-radius:2px;transition:all .2s;}
     .proj-link:hover{color:var(--text);border-color:var(--muted);}
     .proj-arrow{font-size:14px;color:var(--muted);transition:transform .2s;}
+    .proj-more{position:absolute;top:1.25rem;right:1.25rem;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .25s;pointer-events:none;}
+    .proj-card:hover .proj-more{opacity:.7;}
+
+    /* ── Project modal ── */
+    .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.7);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4rem 1.5rem;}
+    .modal-overlay.open{opacity:1;pointer-events:auto;}
+    .modal{background:var(--surface);border:.5px solid var(--border2);border-radius:6px;max-width:680px;width:100%;position:relative;transform:translateY(20px) scale(.98);transition:transform .3s cubic-bezier(.2,.7,.2,1);overflow:hidden;margin:auto 0;}
+    .modal-overlay.open .modal{transform:translateY(0) scale(1);}
+    .modal-visual{height:160px;background:linear-gradient(135deg,#181818 0%,#111 100%);position:relative;overflow:hidden;border-bottom:.5px solid var(--border);display:flex;align-items:center;justify-content:center;}
+    .modal-visual img{width:100%;height:100%;object-fit:cover;display:block;}
+    .modal-visual-mono{font-family:var(--serif);font-size:64px;color:rgba(200,184,154,.12);letter-spacing:-.02em;user-select:none;}
+    .modal-visual-grid{position:absolute;inset:0;opacity:.35;background-image:linear-gradient(rgba(200,184,154,.06) .5px,transparent .5px),linear-gradient(90deg,rgba(200,184,154,.06) .5px,transparent .5px);background-size:28px 28px;}
+    .modal-close{position:absolute;top:1rem;right:1rem;z-index:3;width:30px;height:30px;border-radius:50%;border:.5px solid var(--border2);background:rgba(10,10,10,.6);color:var(--muted);font-family:var(--mono);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;}
+    .modal-close:hover{color:var(--text);border-color:var(--muted);background:var(--surface2);}
+    .modal-body{padding:1.75rem 2rem 2rem;}
+    .modal-badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;display:inline-block;}
+    .modal-title{font-family:var(--serif);font-size:28px;line-height:1.1;color:var(--text);margin-bottom:.5rem;letter-spacing:-.02em;}
+    .modal-tagline{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--muted);margin-bottom:1.5rem;}
+    .modal-section-h{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin:1.5rem 0 .75rem;}
+    .modal-overview{font-size:14px;color:var(--muted);line-height:1.75;}
+    .modal-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+    .modal-list li{font-size:13px;color:var(--muted);line-height:1.6;padding-left:1.1rem;position:relative;}
+    .modal-list li::before{content:'';position:absolute;left:0;top:.55em;width:4px;height:4px;background:var(--accent);border-radius:50%;}
+    .modal-list li strong{color:var(--text);font-weight:500;}
+    .modal-stack{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+    .modal-chip{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--accent2);background:rgba(143,184,168,.1);padding:.25rem .65rem;border-radius:2px;}
+    .modal-links{display:flex;gap:.75rem;margin-top:1.75rem;padding-top:1.5rem;border-top:.5px solid var(--border);}
+    .modal-link{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:.55rem 1.2rem;border-radius:2px;transition:all .2s;cursor:pointer;}
+    .modal-link.primary{background:var(--accent);color:var(--bg);border:none;}
+    .modal-link.primary:hover{background:var(--text);}
+    .modal-link.ghost{color:var(--muted);border:.5px solid var(--border2);}
+    .modal-link.ghost:hover{color:var(--text);border-color:var(--muted);}
+    body.modal-open{overflow:hidden;}
 
     /* ── Ripple ── */
     .ripple{position:absolute;border-radius:50%;background:rgba(200,184,154,.15);transform:scale(0);animation:ripOut .7s ease-out forwards;pointer-events:none;}
@@ -176,7 +209,7 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Graduating May 2026</div>
+  <div class="hero-eyebrow">Graduated May 2026</div>
   <h1 class="hero-name" id="heroName" data-text="Manas Munjial">Manas<br><em>Munjial</em></h1>
   <div class="hero-role-wrap">
     <p class="hero-role"><span id="roleType"></span><span class="hero-role-cursor"></span></p>
@@ -198,12 +231,12 @@
   <div class="about-grid">
     <div class="about-left">
       <h2>CS student,<br>Penn State<br><em>May 2026</em></h2>
-      <p>Senior at Penn State, graduating May 2026 with a 3.88 GPA and 8 consecutive semesters on the Dean's List. Major in Computer Science.</p>
+      <p>Senior at Penn State, graduated May 2026 with a 3.86 GPA and 8 consecutive semesters on the Dean's List. Major in Computer Science.</p>
       <p>I've built RAG systems used by 200+ Penn State employees, shipped a capstone app now adopted by engineering firms, and written everything from PyTorch transformers to C memory allocators from scratch.</p>
     </div>
     <div class="about-right">
       <div class="stat-row">
-        <div class="stat"><div class="stat-num">3.88<span>/4</span></div><div class="stat-label">GPA</div></div>
+        <div class="stat"><div class="stat-num">3.86<span>/4</span></div><div class="stat-label">GPA</div></div>
         <div class="stat"><div class="stat-num">8<span>x</span></div><div class="stat-label">Dean's List</div></div>
         <div class="stat"><div class="stat-num">200<span>+</span></div><div class="stat-label">Users Served</div></div>
         <div class="stat"><div class="stat-num">1<span>st</span></div><div class="stat-label">Capstone</div></div>
@@ -336,6 +369,20 @@
       </div>
     </div>
 
+    <div class="proj-card" id="pc8">
+      <div>
+        <div class="proj-badge b-prod">AI Safety · Eval Harness</div>
+        <div class="proj-title">LLMArena</div>
+        <p class="proj-desc">Tournament harness that pits five LLM system-prompt archetypes against each other in attacker/defender matchups, with a separate judge model scoring every exchange. Produces a dominance matrix to test whether any prompting style is universally robust or a rock-paper-scissors structure emerges.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-stack">Next.js · FastAPI · Anthropic SDK · Python</span>
+        <div class="proj-links">
+          <a href="https://github.com/Manchi0" class="proj-link" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
     <div class="proj-card" id="pc5">
       <div>
         <div class="proj-badge b-sys">Systems · OS</div>
@@ -427,12 +474,292 @@
 <div class="divider"></div>
 <footer>
   <div class="footer-name">Manas Munjial</div>
-  <div class="footer-right">Penn State CS · Graduating May 2026 · H-1B Sponsorship Required</div>
+  <div class="footer-right">Penn State CS · Graduated May 2026 · H-1B Sponsorship Required</div>
 </footer>
 
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projModal">
+  <div class="modal" id="modalInner">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-visual" id="modalVisual">
+      <div class="modal-visual-grid"></div>
+      <div class="modal-visual-mono" id="modalMono"></div>
+      <img id="modalImg" alt="" style="display:none;" />
+    </div>
+    <div class="modal-body">
+      <div class="modal-badge" id="modalBadge"></div>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-tagline" id="modalTagline"></p>
+      <p class="modal-overview" id="modalOverview"></p>
+      <div class="modal-section-h">Key Features</div>
+      <ul class="modal-list" id="modalFeatures"></ul>
+      <div class="modal-section-h">Engineering Details</div>
+      <ul class="modal-list" id="modalTech"></ul>
+      <div class="modal-section-h">Stack</div>
+      <div class="modal-stack" id="modalStack"></div>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // ── Cursor
-  const cur = document.getElementById('cur');
+  // ════════════════════════════════════════════════
+  //  PROJECT DATA  —  edit text, links, and image here
+  //  To add a real screenshot, set `image` to a URL.
+  // ════════════════════════════════════════════════
+  const PROJECTS = {
+    pc1: {
+      mono: 'AL',
+      image: '', // e.g. 'assets/aluminum.png'
+      badge: '1st Place — 76 teams · Penn State Fall 2025 Capstone',
+      badgeClass: 'b-award',
+      title: 'Aluminum Tolerance Calculator',
+      tagline: 'Replacing a manual spec-table lookup with a deployed web tool.',
+      overview: 'Aluminum extrusion engineers traditionally cross-reference printed tolerance tables (Aluminum Association Tables 11.2 and 12.2) by hand for every part — slow and error-prone. I built a full-stack web app that encodes those standards and returns exact tolerances for any alloy and dimension. It won 1st place out of 76 teams at the Penn State Fall 2025 Engineering Capstone showcase and is now used in practice by the Aluminum Association and related firms.',
+      features: [
+        '<strong>Full tolerance engine</strong> covering 1xxx through 7xxx alloy series, including special-case rules for 5xxx alloys and footnote 8 conditions.',
+        '<strong>Authenticated accounts</strong> with saved calculation history so engineers can revisit prior lookups.',
+        '<strong>Export to PDF, Excel, and text</strong> for engineering documentation, plus metric and imperial unit support.'
+      ],
+      tech: [
+        'React 18 + Vite frontend with React Router, talking to a <strong>Flask REST API</strong> with JWT-authenticated protected routes.',
+        '<strong>Supabase (PostgreSQL)</strong> for user management and calculation history.',
+        'Modular three-layer architecture (frontend, API, data service) with cross-platform setup scripts for macOS, Linux, and Windows.'
+      ],
+      stack: ['React 18', 'Vite', 'Flask', 'Supabase', 'PostgreSQL', 'JWT'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc2: {
+      mono: 'FG',
+      image: '',
+      badge: '2nd Place · Bitcamp 2025 · Capital One Track',
+      badgeClass: 'b-hack',
+      title: 'FinGuard',
+      tagline: 'A browser extension that picks the right card and flags bad sites.',
+      overview: 'FinGuard helps people stop leaving rewards on the table and avoid scam merchants. It is a browser extension plus web dashboard that recommends the best credit card at checkout, warns about untrustworthy sites, and analyzes spending. It took 2nd place on the Capital One track at Bitcamp 2025.',
+      features: [
+        '<strong>Per-purchase card recommendation</strong> based on a user\'s linked cards, pulling rewards, points, and active discounts from a card database.',
+        '<strong>Scam-site nudges</strong> that surface a warning when a merchant\'s reputation score (via IPQS) is low.',
+        '<strong>Spending dashboard</strong> showing income, expenses, savings, and cashback, with category breakdowns.'
+      ],
+      tech: [
+        'React extension and TailwindCSS dashboard on a <strong>Node.js backend</strong> handling auth and external API calls.',
+        '<strong>Gemini RAG pipeline</strong> over transaction history to answer spending questions and surface insights.',
+        'MongoDB Atlas for card data, user profiles, and transactions; Selenium and BeautifulSoup for card-offer scraping.'
+      ],
+      stack: ['React', 'Node.js', 'MongoDB', 'Gemini', 'Selenium', 'IPQS'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc3: {
+      mono: 'AX',
+      image: '',
+      badge: 'Full-Stack ML Platform',
+      badgeClass: 'b-prod',
+      title: 'AxonX',
+      tagline: 'Draw a neural network, compile it to real PyTorch, train it on a GPU.',
+      overview: 'Most visual neural-network tools are browser simulations that never train a real model. AxonX is different: users drag and drop layers onto a canvas, and the graph compiles to an actual PyTorch training script that runs on cloud GPUs. An embedded Claude tutor reads the live graph and gives architecture-specific feedback rather than generic chat answers.',
+      features: [
+        '<strong>Graph-to-PyTorch compiler</strong> supporting 30+ layer types (Linear, Conv2d, LSTM, GRU, Transformer, Attention, Norm, Dropout, and more).',
+        '<strong>Live training</strong> on Modal GPU sandboxes (A10/T4) with epoch-level loss and accuracy streamed to the browser over Server-Sent Events.',
+        '<strong>Graph-aware AI tutor</strong> that sees the user\'s actual nodes and connections and flags issues like shape mismatches or dead linear stacks.'
+      ],
+      tech: [
+        'Deterministic <strong>shape inference and topology validation</strong> (cycle and connectivity checks) run before any training starts — ground truth, separate from the LLM.',
+        'BFS-based checkpoint validation powers 5 guided courses (MLP → CNN → RNN → LSTM → Transformer) with specific pass/fail feedback.',
+        'Supabase PostgreSQL with <strong>Row-Level Security</strong>, Google/GitHub OAuth, and model weights behind 30-minute signed URLs.'
+      ],
+      stack: ['React', 'TypeScript', 'FastAPI', 'PyTorch', 'Modal', 'Supabase'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc4: {
+      mono: 'AC',
+      image: '',
+      badge: 'Agentic AI · Calendar',
+      badgeClass: 'b-prod',
+      title: 'AutoCal',
+      tagline: 'A calendar that gathers your tasks, schedules them, and helps you finish.',
+      overview: 'AutoCal pulls to-dos from the apps you already use, fits them into your open time automatically, and then launches an AI assistant when a work block begins. The goal is to remove both the planning overhead and the cold-start of actually beginning a task.',
+      features: [
+        '<strong>Task aggregation</strong> from Canvas, Outlook, and Jira/GitHub into one unified queue via OAuth integrations.',
+        '<strong>Automatic scheduling</strong> that places tasks into free calendar slots around deadlines and blocked-off time.',
+        '<strong>Context-aware launch</strong>: when a block starts, it opens the relevant files and a focused AI assistant for that task.'
+      ],
+      tech: [
+        'React + Node.js app with OAuth flows for Canvas, Outlook, and GitHub.',
+        '<strong>Adaptive duration learning</strong>: if a task overruns its estimate, future similar tasks get more time blocked automatically.',
+        'Schedule reflow logic that re-plans the remaining week when work runs late, respecting user-set availability windows.'
+      ],
+      stack: ['React', 'Node.js', 'Python', 'OAuth'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc8: {
+      mono: 'LA',
+      image: '',
+      badge: 'AI Safety · Eval Harness',
+      badgeClass: 'b-prod',
+      title: 'LLMArena',
+      tagline: 'Do any prompt-hardening styles universally win, or is it rock-paper-scissors?',
+      overview: 'LLMArena is an evaluation harness that pits five distinct system-prompt archetypes against each other in attacker/defender matchups, with a separate judge model scoring every exchange. The headline artifact is a dominance matrix that reveals whether one prompting style is universally robust or whether robustness depends on the opponent — surfaced live through a bracket UI as matches run.',
+      features: [
+        '<strong>Five prompt archetypes</strong> (Prohibitive, Values-based, Persona, Minimal, Meta-aware), each with separate attacker and defender templates.',
+        '<strong>Multi-turn matchups</strong> with configurable turn limits and an optional self-play mode for diagonal pairings.',
+        '<strong>Live bracket UI</strong> that fills the dominance matrix in real time as trials complete.'
+      ],
+      tech: [
+        'Next.js frontend with a <strong>FastAPI orchestration backend</strong> that runs the match runner per trial.',
+        'Judge model scores each transcript on <strong>compliance, partial-compliance, and attack-detection</strong>, plus an attacker-persistence axis that rewards varied tactics.',
+        'Uses the Anthropic Python SDK with <strong>prompt caching</strong> on static per-matchup system prompts to cut cost across goals and trials.'
+      ],
+      stack: ['Next.js', 'FastAPI', 'Anthropic SDK', 'Python'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc5: {
+      mono: 'MA',
+      image: '',
+      badge: 'Systems · Operating Systems',
+      badgeClass: 'b-sys',
+      title: 'Memory Allocator',
+      tagline: 'A custom malloc/free in C, built two ways.',
+      overview: 'A from-scratch memory allocation library in C that implements two classic allocation schemes over a fixed 8MB pool, exposing my_malloc() and my_free() in place of the standard library. Built under a strict no-external-library constraint (only math.h) to demonstrate low-level memory management end to end.',
+      features: [
+        '<strong>Buddy allocator</strong> with power-of-two block sizing and automatic coalescing of freed neighbors.',
+        '<strong>Slab allocator</strong> for fixed-size object allocation layered on top of the buddy system.',
+        'Configurable memory size, header size, minimum chunk size, and objects-per-slab.'
+      ],
+      tech: [
+        'Header-based tracking (no footers) with <strong>free lists sorted by address</strong> for deterministic hole selection.',
+        'Single-threaded allocator handling fragmentation and reallocation patterns across a fixed pool.',
+        'Validated against <strong>500+ allocation/deallocation requests</strong> with diff-based output matching under a 3-second timeout.'
+      ],
+      stack: ['C', 'Operating Systems', 'No external libs'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc6: {
+      mono: 'TF',
+      image: '',
+      badge: 'ML · Built From Scratch',
+      badgeClass: 'b-sys',
+      title: 'Character-Level Transformer',
+      tagline: 'A decoder-only transformer implemented from first principles in PyTorch.',
+      overview: 'A character-level language model built without high-level transformer libraries, to understand the architecture by implementing every component directly: attention, embeddings, normalization, and the training loop. The model generates text that captures patterns from its training corpus.',
+      features: [
+        '<strong>Multi-head self-attention</strong> (4 heads) with causal masking to prevent information leakage from future tokens.',
+        'Learned token and positional embeddings at 64 dimensions for a compact model footprint.',
+        'Feed-forward blocks with layer normalization and residual connections for stable training.'
+      ],
+      tech: [
+        'Trained for <strong>4000 epochs</strong> with hyperparameter tuning for stable convergence.',
+        'Causal masking implemented manually rather than relying on a framework attention module.',
+        'Written in PyTorch with a custom training loop and token batching.'
+      ],
+      stack: ['PyTorch', 'Python'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    },
+    pc7: {
+      mono: 'ST',
+      image: '',
+      badge: 'Computer Vision · Healthcare',
+      badgeClass: 'b-prod',
+      title: 'Multi-Spatial Surgical Tool Tracking',
+      tagline: 'Real-time instrument tracking aimed at reducing retained-tool incidents.',
+      overview: 'A computer-vision system that monitors surgical instruments in real time to support operating-room safety. It classifies each tool\'s state and keeps a running log so teams can audit tool usage during and after an operation.',
+      features: [
+        '<strong>Three-state tracking</strong> for every instrument: in field, in use, and discarded.',
+        '<strong>Live activity log</strong> recording tool events over time for post-operation analysis.',
+        'Web interface showing the current state of all tracked tools at a glance.'
+      ],
+      tech: [
+        'OpenCV with classifier-based object detection, backed by PyTorch models, for instrument recognition.',
+        '<strong>Flask backend</strong> handling detection and state management; React + Tailwind frontend for the live view.',
+        'State-machine logic mapping detections to tool lifecycle transitions.'
+      ],
+      stack: ['OpenCV', 'PyTorch', 'Flask', 'React', 'Tailwind CSS'],
+      github: 'https://github.com/Manchi0',
+      demo: ''
+    }
+  };
+
+  // ── Modal wiring
+  const overlay = document.getElementById('projModal');
+  const mClose = document.getElementById('modalClose');
+  const mVisual = document.getElementById('modalVisual');
+  const mImg = document.getElementById('modalImg');
+  const mMono = document.getElementById('modalMono');
+  const mBadge = document.getElementById('modalBadge');
+  const mTitle = document.getElementById('modalTitle');
+  const mTagline = document.getElementById('modalTagline');
+  const mOverview = document.getElementById('modalOverview');
+  const mFeatures = document.getElementById('modalFeatures');
+  const mTech = document.getElementById('modalTech');
+  const mStack = document.getElementById('modalStack');
+  const mLinks = document.getElementById('modalLinks');
+
+  function openModal(id) {
+    const p = PROJECTS[id];
+    if (!p) return;
+    mBadge.className = 'modal-badge ' + p.badgeClass;
+    mBadge.textContent = p.badge;
+    mTitle.textContent = p.title;
+    mTagline.textContent = p.tagline;
+    mOverview.textContent = p.overview;
+    mFeatures.innerHTML = p.features.map(f => '<li>' + f + '</li>').join('');
+    mTech.innerHTML = p.tech.map(t => '<li>' + t + '</li>').join('');
+    mStack.innerHTML = p.stack.map(s => '<span class="modal-chip">' + s + '</span>').join('');
+
+    if (p.image) {
+      mImg.src = p.image; mImg.style.display = 'block'; mMono.style.display = 'none';
+    } else {
+      mImg.style.display = 'none'; mMono.style.display = 'block'; mMono.textContent = p.mono;
+    }
+
+    let links = '<a class="modal-link primary" href="' + p.github + '" target="_blank">GitHub ↗</a>';
+    if (p.demo) links += '<a class="modal-link ghost" href="' + p.demo + '" target="_blank">Live Demo ↗</a>';
+    mLinks.innerHTML = links;
+    mLinks.querySelectorAll('.modal-link').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+    });
+
+    overlay.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('.proj-card').forEach(card => {
+    // add a subtle "click for details" hint
+    const hint = document.createElement('span');
+    hint.className = 'proj-more';
+    hint.textContent = 'Click for details ↗';
+    card.appendChild(hint);
+
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('.proj-link')) return; // let GitHub link work normally
+      openModal(this.id);
+    });
+  });
+
+  mClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  [mClose, overlay].forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+  });
+</script>
+
+<script>
   const ring = document.getElementById('cur-ring');
   const coordDisp = document.getElementById('coord-disp');
   const canvas = document.getElementById('bg-canvas');
@@ -554,7 +881,7 @@
   });
 
   // ── Typewriter role cycler
-  const roles = ['ML Engineer', 'Software Engineer', 'Full-Stack Developer', 'CS @ Penn State', 'Graduating May 2026'];
+  const roles = ['ML Engineer', 'AI Engineer', 'Software Engineer', 'CS @ Penn State', 'Graduated May 2026'];
   let rIdx = 0;
   const typeEl = document.getElementById('roleType');
 
